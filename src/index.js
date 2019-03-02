@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-function bigComputation() {
-  alert('Big computation in JavaScript');
-}
+const wasm = import('../build/synesthete');
 
-const App = () => {
-  return (
-    <div>
-      <h1>Synesthete</h1>
-      <button onClick={bigComputation}>Run Computation</button>
-    </div>
-  );
-};
+wasm.then(wasm => {
+  const App = () => {
+    return (
+      <div>
+        <h1>Synesthete</h1>
+        <button onClick={wasm.big_computation}>Run Computation</button>
+      </div>
+    );
+  };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+  ReactDOM.render(<App />, document.getElementById('root'));
+});

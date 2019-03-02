@@ -4,7 +4,10 @@
   "description": "Visualize numbers as colors",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-wasm": "cargo build --target wasm32-unknown-unknown",
+    "build-bindgen": "wasm-bindgen target/wasm32-unknown-unknown/debug/synesthete.wasm --out-dir build",
+    "build": "npm run build-wasm && npm run build-bindgen && npx webpack"
   },
   "repository": {
     "type": "git",
@@ -18,12 +21,14 @@
   },
   "homepage": "https://github.com/caryssaperez/synesthete#readme",
   "dependencies": {
+    "express": "^4.16.4",
     "react": "^16.8.3",
     "react-dom": "^16.8.3"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "webpack": "^4.29.6",
