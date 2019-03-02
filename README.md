@@ -1,2 +1,3 @@
 # synesthete
-Visualize numbers as colors
+
+Visualize numbers as colors.

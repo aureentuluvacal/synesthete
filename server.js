@@ -1,9 +1,9 @@
 var express = require('express');
 var app = express();
-var path = require('path');
 
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname + '/dist/index.html'));
+app.use(express.static('dist'));
+express.static.mime.types.wasm = 'application/wasm';
+
+app.listen(8080, function() {
+  console.log('Listening on port 8080...');
 });
-
-app.listen(8080);
