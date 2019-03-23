@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-wasm": "cargo build --target wasm32-unknown-unknown",
     "build-bindgen": "wasm-bindgen target/wasm32-unknown-unknown/debug/synesthete.wasm --out-dir build",
-    "build": "npm run build-wasm && npm run build-bindgen && npx webpack"
+    "build": "npm run build-wasm && npm run build-bindgen && npx webpack",
+    "start": "npm run build && node server.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   "dependencies": {
     "express": "^4.16.4",
     "react": "^16.8.3",
+    "react-color": "^2.17.0",
     "react-dom": "^16.8.3"
   },
   "devDependencies": {
