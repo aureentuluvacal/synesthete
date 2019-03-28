@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { SketchPicker } from 'react-color';
+import styled from 'styled-components';
 
 class Block extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class Block extends Component {
 
   render() {
     return (
-      <div>
+      <div className="Block">
         <h2>{this.props.digit}</h2>
         <SketchPicker
           color={this.state.color}

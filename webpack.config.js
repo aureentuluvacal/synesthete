@@ -11,11 +11,12 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
+        use: 'babel-loader',
       },
     ],
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.wasm'],
   },
   mode: 'development',
 };
