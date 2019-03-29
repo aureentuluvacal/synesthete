@@ -8,6 +8,6 @@ extern "C" {
 }
 
 #[wasm_bindgen]
-pub fn big_computation() {
+pub fn load_colors() {
     alert("Big computation in Rust");
 }

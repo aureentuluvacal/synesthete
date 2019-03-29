@@ -2,6 +2,19 @@ import React, { Component } from 'react';
 import { SketchPicker } from 'react-color';
 import styled from 'styled-components';
 
+const StyledBlock = styled.div`
+  background-color: #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150%;
+`;
+
+const StyledHeader = styled.h2`
+  margin: 0px 0px 0px 10px;
+  text-align: center;
+  color: #333;
+`;
+
 class Block extends Component {
   constructor(props) {
     super(props);
@@ -28,15 +41,15 @@ class Block extends Component {
 
   render() {
     return (
-      <div className="Block">
-        <h2>{this.props.digit}</h2>
+      <StyledBlock>
+        <StyledHeader>{this.props.digit}</StyledHeader>
         <SketchPicker
           color={this.state.color}
           disableAlpha
           presetColors={[]}
           onChangeComplete={this.handleChangeComplete}
         />
-      </div>
+      </StyledBlock>
     );
   }
 }
