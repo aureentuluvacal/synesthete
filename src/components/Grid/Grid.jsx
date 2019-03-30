@@ -4,10 +4,8 @@ import styled from 'styled-components';
 
 const StyledGrid = styled.div`
   display: grid;
-  grid-template-columns: 260px 260px 260px;
+  grid-template-columns: 60px 60px 60px;
   grid-gap: 10px;
-  background-color: #fff;
-  color: #ddd;
 `;
 
 const Grid = () => {
@@ -15,7 +13,7 @@ const Grid = () => {
     <StyledGrid>
       {Array(10)
         .fill()
-        .map((digit, index) => (
+        .map((value, index) => (
           <Block key={`Number${index}`} digit={index} />
         ))}
     </StyledGrid>

@@ -1,18 +1,34 @@
 import React, { Component } from 'react';
-import { SketchPicker } from 'react-color';
+import { ChromePicker } from 'react-color';
 import styled from 'styled-components';
 
 const StyledBlock = styled.div`
-  background-color: #ddd;
-  border-radius: 5px;
-  padding: 20px;
-  font-size: 150%;
+  background-color: #fafafa;
+  border-radius: 8px;
+  margin: 0 auto;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 4px 0px;
 `;
 
-const StyledHeader = styled.h2`
-  margin: 0px 0px 0px 10px;
+const Header = styled.h2`
+  margin: 10px;
   text-align: center;
   color: #333;
+  font-family: sans-serif;
+`;
+
+const Popover = styled.div`
+  position: absolute;
+  z-index: 2;
+`;
+
+const Cover = styled.div`
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
 `;
 
 class Block extends Component {
@@ -21,6 +37,7 @@ class Block extends Component {
 
     this.state = {
       color: '#fff',
+      displayColorPicker: false,
     };
 
     this.handleChangeComplete = this.handleChangeComplete.bind(this);
@@ -34,21 +51,42 @@ class Block extends Component {
     }
   }
 
+  handleClick() {
+    this.setState({ displayColorPicker: !this.state.displayColorPicker });
+  }
+
+  handleClose() {
+    this.setState({ displayColorPicker: false });
+  }
+
   handleChangeComplete(color, event) {
     this.setState({ color: color.hex });
     localStorage.setItem(`${this.props.digit}_color`, color.hex);
   }
 
   render() {
+    const swatchStyles = {
+      width: '50px',
+      height: '35px',
+      display: 'inline-block',
+      cursor: 'pointer',
+      background: `${this.state.color}`,
+    };
+
     return (
       <StyledBlock>
-        <StyledHeader>{this.props.digit}</StyledHeader>
-        <SketchPicker
-          color={this.state.color}
-          disableAlpha
-          presetColors={[]}
-          onChangeComplete={this.handleChangeComplete}
-        />
+        <Header>{this.props.digit}</Header>
+        <div style={swatchStyles} onClick={() => this.handleClick()} />
+        {this.state.displayColorPicker && (
+          <Popover>
+            <Cover onClick={() => this.handleClose()} />
+            <ChromePicker
+              color={this.state.color}
+              disableAlpha
+              onChangeComplete={this.handleChangeComplete}
+            />
+          </Popover>
+        )}
       </StyledBlock>
     );
   }

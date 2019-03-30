@@ -1,29 +1,37 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import Grid from './components/Grid';
 
 const StyledHeader = styled.header`
-  background-color: #282c34;
-  height: 100px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 75px;
+  font-size: 36px;
+  font-family: sans-serif;
 `;
+
+const Columns = styled.div`
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+`;
+
 const wasm = import('../build/synesthete');
 
 wasm.then(wasm => {
   const App = () => {
     return (
-      <div>
+      <Fragment>
         <StyledHeader>Synesthete</StyledHeader>
-        <Grid />
-        <button onClick={wasm.load_colors}>Load Colors</button>
-        <div />
-      </div>
+        <Columns>
+          <div>
+            <Grid />
+            <button onClick={wasm.load_colors}>Load Colors</button>
+          </div>
+          <div>
+            <input type="text" name="digits" />
+          </div>
+          <div>BACON</div>
+        </Columns>
+      </Fragment>
     );
   };
 
