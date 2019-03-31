@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ChromePicker } from 'react-color';
 import styled from 'styled-components';
+import hexToRgb from '../../utils';
 
 const StyledBlock = styled.div`
   background-color: #fafafa;
@@ -44,7 +45,7 @@ class Block extends Component {
   }
 
   componentDidMount() {
-    const color = localStorage.getItem(`${this.props.digit}_color`);
+    const color = localStorage.getItem(`${this.props.digit}_color_hex`);
 
     if (color) {
       this.setState({ color });
@@ -60,8 +61,15 @@ class Block extends Component {
   }
 
   handleChangeComplete(color, event) {
-    this.setState({ color: color.hex });
-    localStorage.setItem(`${this.props.digit}_color`, color.hex);
+    const hexColor = color.hex;
+    const rgbColor = hexToRgb(hexColor);
+    this.setState({ color: hexColor });
+
+    localStorage.setItem(`${this.props.digit}_color_hex`, hexColor);
+    localStorage.setItem(
+      `${this.props.digit}_color_rgb`,
+      Object.values(rgbColor).toString(),
+    );
   }
 
   render() {

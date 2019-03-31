@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import Grid from './components/Grid';
 import NumberInput from './components/NumberInput';
 
+const wasm = import('../build/synesthete');
+
 const StyledHeader = styled.header`
   height: 75px;
   font-size: 36px;
@@ -15,29 +17,29 @@ const Columns = styled.div`
   grid-template-columns: 33% 33% 33%;
 `;
 
-const handleOnKeyUp = () => {
-  // TODO handle redraw
-  console.log('TIS I, THE FRENCHIEST FRY');
+const handleInputChange = (colors, inputValue) => {
+  wasm.then(wasm => {
+    const canvas = document.getElementById('drawing');
+    const ctx = canvas.getContext('2d');
+    wasm.draw(ctx, 400, 600, colors, inputValue);
+  });
 };
 
-const wasm = import('../build/synesthete');
+const App = () => {
+  return (
+    <Fragment>
+      <StyledHeader>Synesthete</StyledHeader>
+      <Columns>
+        <div>
+          <Grid />
+        </div>
+        <NumberInput handleInputChange={handleInputChange} />
+        <div>
+          <canvas id="drawing" width="400" height="600" />
+        </div>
+      </Columns>
+    </Fragment>
+  );
+};
 
-wasm.then(wasm => {
-  const App = () => {
-    return (
-      <Fragment>
-        <StyledHeader>Synesthete</StyledHeader>
-        <Columns>
-          <div>
-            <Grid />
-            <button onClick={wasm.load_colors}>Load Colors</button>
-          </div>
-          <NumberInput onKeyUp={handleOnKeyUp} />
-          <div>BACON</div>
-        </Columns>
-      </Fragment>
-    );
-  };
-
-  ReactDOM.render(<App />, document.getElementById('root'));
-});
+ReactDOM.render(<App />, document.getElementById('root'));
