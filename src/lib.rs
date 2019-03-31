@@ -11,3 +11,8 @@ extern "C" {
 pub fn load_colors() {
     alert("Big computation in Rust");
 }
+
+#[wasm_bindgen]
+pub fn render_color_blocks() {
+    
+}
