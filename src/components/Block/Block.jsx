@@ -1,36 +1,7 @@
 import React, { Component } from 'react';
 import { ChromePicker } from 'react-color';
-import styled from 'styled-components';
+import styles from './Block.module';
 import hexToRgb from '../../utils';
-
-const StyledBlock = styled.div`
-  background-color: #fafafa;
-  border-radius: 8px;
-  margin: 0 auto;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  padding: 4px 0px;
-`;
-
-const Header = styled.h2`
-  margin: 10px;
-  text-align: center;
-  color: #333;
-  font-family: sans-serif;
-`;
-
-const Popover = styled.div`
-  position: absolute;
-  z-index: 2;
-`;
-
-const Cover = styled.div`
-  position: fixed;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-`;
 
 class Block extends Component {
   constructor(props) {
@@ -82,20 +53,20 @@ class Block extends Component {
     };
 
     return (
-      <StyledBlock>
-        <Header>{this.props.digit}</Header>
+      <div className={styles.block}>
+        <h2 className={styles.blockHeader}>{this.props.digit}</h2>
         <div style={swatchStyles} onClick={() => this.handleClick()} />
         {this.state.displayColorPicker && (
-          <Popover>
-            <Cover onClick={() => this.handleClose()} />
+          <div className={styles.popover}>
+            <div className={styles.cover} onClick={() => this.handleClose()} />
             <ChromePicker
               color={this.state.color}
               disableAlpha
               onChangeComplete={this.handleChangeComplete}
             />
-          </Popover>
+          </div>
         )}
-      </StyledBlock>
+      </div>
     );
   }
 }

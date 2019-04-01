@@ -1,0 +1,28 @@
+.block {
+  background-color: #fafafa;
+  border-radius: 8px;
+  margin: 0 auto;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 4px 0px;
+
+  &Header {
+    margin: 10px;
+    text-align: center;
+    color: #333;
+    font-family: sans-serif;
+  }
+}
+
+.popover {
+  position: absolute;
+  z-index: 2;
+}
+
+.cover {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
