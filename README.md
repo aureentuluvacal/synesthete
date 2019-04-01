@@ -1,8 +1,8 @@
 # Synesthete
 
-I wanted to play around with WebAssembly and Rust and I wanted this to be my first project that uses it.
+I wanted to play around with WebAssembly and Rust and I wanted this to be my first project to use it.
 
-Synesthete is a way to visualize numbers as colors, which is the type of synesthesia I have. You can assign each digit (0 - 9) a number, enter some numbers in the input, and see how it would look rendered as the colors you chose.
+Synesthete is a way to visualize numbers as colors, which is the type of [synesthesia](https://en.wikipedia.org/wiki/Synesthesia) I have. You can assign each digit (0 - 9) a number, enter some numbers in the input, and see how it would look rendered as the colors you chose.
 
 Currently, the best use case is for large inputs greater than 5,000 numbers.
 
