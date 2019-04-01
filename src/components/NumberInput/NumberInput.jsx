@@ -45,7 +45,6 @@ class NumberInput extends Component {
     return (
       <div>
         <textarea
-          maxLength="200"
           cols="70"
           rows="30"
           placeholder="Enter numbers here!"

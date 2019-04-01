@@ -22,13 +22,12 @@ pub struct Colors {
 }
 
 #[wasm_bindgen]
-pub fn parse_rgb_string(rgb: &str) {
-
-}
-
-#[wasm_bindgen]
 extern "C" {
     fn alert(s: &str);
+}
+
+fn to_le(v: Vec<u32>) -> Vec<u8> {
+    v.iter().map(|&s| s as u8).collect()
 }
 
 #[wasm_bindgen]
@@ -46,10 +45,10 @@ pub fn draw(
 ) -> Result<(), JsValue> {
     let colors: Colors = load_colors(colors_from_js);
     let digits: Vec<char> = input_value.as_string().unwrap().chars().collect();
-    let mut mapped_color_data = vec![255, width*4];
-    let default_color = String::from("#fff");
+    let mut mapped_color_data = vec![255; (4 * height * width) as usize];
+    let default_color = String::from("255,255,255");
 
-    for (i, digit) in digits.iter().enumerate() {
+    for (index, digit) in digits.iter().enumerate() {
         let digit_as_int: u32 = digit.to_digit(10).unwrap();
 
         let mapped_color = match digit_as_int {
@@ -66,16 +65,17 @@ pub fn draw(
             _ => &default_color
         };
 
-        let mut split = mapped_color.split(",");
-        let color_component_number = 0;
+        let split = mapped_color.split(",");
+        let mut color_component_number = 0;
         for s in split {
-            mapped_color_data[i+color_component_number] = (s.parse::<u32>().unwrap()) as u8;
+            mapped_color_data[index + color_component_number] = ((s.parse::<u32>().unwrap()) as u8).into();
             color_component_number += 1;
         }
 
-        mapped_color_data[i+color_component_number] = 255;
+        mapped_color_data[index + color_component_number] = 255;
     }
 
-    let data = ImageData::new_with_u8_clamped_array_and_sh(Clamped(&mut mapped_color_data[..]), width, height)?;
+    let mut u8_data = to_le(mapped_color_data);
+    let data = ImageData::new_with_u8_clamped_array_and_sh(Clamped(&mut u8_data), width, height)?;
     ctx.put_image_data(&data, 0.0, 0.0)
 }
