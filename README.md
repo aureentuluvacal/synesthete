@@ -8,15 +8,15 @@ Currently, the best use case is for large inputs greater than 5,000 numbers.
 
 ## Example
 
-![synesthete example](https://s3.us-east-2.amazonaws.com/caryssa-perez-project-images/synesthete-example)
+![synesthete example](https://s3.us-east-2.amazonaws.com/caryssa-perez-project-images/synesthete-example.png)
 
 The first 500,000 digits of pi in the colors I see.
 
 ## Stack
 
-**Front-end**: Javascript (React)
-**Back-end**: Rust, WebAssembly
-**Data Storage**: Local Storage
+- **Front-end**: Javascript (React)
+- **Back-end**: Rust, WebAssembly
+- **Data Storage**: Local Storage
 
 ## Todo
 
