@@ -1,21 +1,10 @@
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
-import styled from 'styled-components';
+import styles from './App.module';
 import Grid from './components/Grid';
 import NumberInput from './components/NumberInput';
 
 const wasm = import('../build/synesthete');
-
-const StyledHeader = styled.header`
-  height: 75px;
-  font-size: 36px;
-  font-family: sans-serif;
-`;
-
-const Columns = styled.div`
-  display: grid;
-  grid-template-columns: 33% 33% 33%;
-`;
 
 const handleInputChange = (colors, inputValue) => {
   wasm.then(wasm => {
@@ -28,8 +17,8 @@ const handleInputChange = (colors, inputValue) => {
 const App = () => {
   return (
     <Fragment>
-      <StyledHeader>Synesthete</StyledHeader>
-      <Columns>
+      <h1 className={styles.appHeader}>Synesthete</h1>
+      <div className={styles.appColumns}>
         <div>
           <Grid />
         </div>
@@ -37,7 +26,7 @@ const App = () => {
         <div>
           <canvas id="drawing" width="400" height="600" />
         </div>
-      </Columns>
+      </div>
     </Fragment>
   );
 };

@@ -1,22 +1,16 @@
 import React from 'react';
 import Block from '../Block';
-import styled from 'styled-components';
-
-const StyledGrid = styled.div`
-  display: grid;
-  grid-template-columns: 60px 60px 60px;
-  grid-gap: 10px;
-`;
+import styles from './Grid.module';
 
 const Grid = () => {
   return (
-    <StyledGrid>
+    <div className={styles.grid}>
       {Array(10)
         .fill()
         .map((value, index) => (
           <Block key={`Number${index}`} digit={index} />
         ))}
-    </StyledGrid>
+    </div>
   );
 };
 

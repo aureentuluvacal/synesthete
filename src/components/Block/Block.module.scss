@@ -12,17 +12,17 @@
     color: #333;
     font-family: sans-serif;
   }
-}
 
-.popover {
-  position: absolute;
-  z-index: 2;
-}
+  &Popover {
+    position: absolute;
+    z-index: 2;
+  }
 
-.cover {
-  position: fixed;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
+  &Cover {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+  }
 }

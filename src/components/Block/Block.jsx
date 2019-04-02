@@ -57,8 +57,11 @@ class Block extends Component {
         <h2 className={styles.blockHeader}>{this.props.digit}</h2>
         <div style={swatchStyles} onClick={() => this.handleClick()} />
         {this.state.displayColorPicker && (
-          <div className={styles.popover}>
-            <div className={styles.cover} onClick={() => this.handleClose()} />
+          <div className={styles.blockPopover}>
+            <div
+              className={styles.blockCover}
+              onClick={() => this.handleClose()}
+            />
             <ChromePicker
               color={this.state.color}
               disableAlpha
