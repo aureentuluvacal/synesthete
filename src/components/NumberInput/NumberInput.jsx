@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from './NumberInput.module';
 
 class NumberInput extends Component {
   constructor(props) {
@@ -43,7 +44,7 @@ class NumberInput extends Component {
 
   render() {
     return (
-      <div>
+      <div className={styles.numberInput}>
         <textarea
           cols="70"
           rows="30"

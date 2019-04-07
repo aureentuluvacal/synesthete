@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ChromePicker } from 'react-color';
 import styles from './Block.module';
-import hexToRgb from '../../utils';
+import hexToRgb from '~utils';
 
 class Block extends Component {
   constructor(props) {
