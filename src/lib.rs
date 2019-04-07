@@ -21,11 +21,6 @@ pub struct Colors {
     nine: String,
 }
 
-#[wasm_bindgen]
-extern "C" {
-    fn alert(s: &str);
-}
-
 fn to_le(v: Vec<u32>) -> Vec<u8> {
     v.iter().map(|&s| s as u8).collect()
 }

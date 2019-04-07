@@ -4,7 +4,6 @@
   "description": "Visualize numbers as colors",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build-wasm": "cargo build --target wasm32-unknown-unknown",
     "build-bindgen": "wasm-bindgen target/wasm32-unknown-unknown/debug/synesthete.wasm --out-dir build",
     "build": "npm run build-wasm && npm run build-bindgen && npx webpack",

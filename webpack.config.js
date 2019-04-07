@@ -1,5 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const resolve = (...args) => path.resolve(__dirname, ...args);
 
 module.exports = {
   entry: { main: './src/index.js' },
@@ -53,6 +54,10 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx', '.wasm', '.scss'],
+    alias: {
+      '~build': resolve('./build'),
+      '~utils': resolve('./src/utils/'),
+    },
   },
   plugins: [
     new MiniCssExtractPlugin({
