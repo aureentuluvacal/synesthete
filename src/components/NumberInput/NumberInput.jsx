@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './NumberInput.module';
+import * as styles from './NumberInput.module';
 
 class NumberInput extends Component {
   constructor(props) {
@@ -11,21 +11,23 @@ class NumberInput extends Component {
   }
 
   getAllColors() {
-    const colors = {
-      zero: null,
-      one: null,
-      two: null,
-      three: null,
-      four: null,
-      five: null,
-      six: null,
-      seven: null,
-      eight: null,
-      nine: null,
+    const defaultColors = {
+      zero: '0,0,0',
+      one: '255,0,0',
+      two: '0,255,0',
+      three: '0,0,255',
+      four: '255,255,0',
+      five: '255,0,255',
+      six: '0,255,255',
+      seven: '128,128,128',
+      eight: '255,128,0',
+      nine: '128,0,255',
     };
 
-    Object.keys(colors).map((key, index) => {
-      colors[key] = localStorage.getItem(`${index}_color_rgb`);
+    const colors = {};
+    Object.keys(defaultColors).forEach((key, index) => {
+      const stored = localStorage.getItem(`${index}_color_rgb`);
+      colors[key] = stored || defaultColors[key];
     });
 
     return colors;

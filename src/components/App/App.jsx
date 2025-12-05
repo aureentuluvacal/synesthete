@@ -1,19 +1,31 @@
-import React, { Fragment } from 'react';
-import styles from './App.module';
-import Grid from '../Grid/';
+import React, { Fragment, useEffect, useRef } from 'react';
+import * as styles from './App.module';
+import Grid from '../Grid';
 import NumberInput from '../NumberInput';
-
-const wasm = import('~build/synesthete');
-
-const handleInputChange = (colors, inputValue) => {
-  wasm.then(wasm => {
-    const canvas = document.getElementById('drawing');
-    const ctx = canvas.getContext('2d');
-    wasm.draw(ctx, 400, 600, colors, inputValue);
-  });
-};
+import init from '~package/synesthete';
 
 const App = () => {
+  const wasmRef = useRef(null);
+
+  const handleInputChange = (colors, inputValue) => {
+    if (!wasmRef.current) {
+      console.warn('WASM module not ready yet');
+      return;
+    }
+
+    const canvas = document.getElementById('drawing');
+    const ctx = canvas.getContext('2d');
+
+    wasmRef.current.draw(ctx, 400, 600, colors, inputValue);
+  };
+
+  useEffect(() => {
+    const runWasm = async () => {
+      wasmRef.current = await init();
+    };
+    runWasm();
+  }, []);
+
   return (
     <Fragment>
       <h1 className={styles.appHeader}>Synesthete</h1>

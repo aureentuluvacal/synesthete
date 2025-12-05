@@ -1,6 +1,6 @@
 import React from 'react';
 import Block from '../Block';
-import styles from './Grid.module';
+import * as styles from './Grid.module';
 
 const Grid = () => {
   return (

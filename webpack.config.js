@@ -1,11 +1,10 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const resolve = (...args) => path.resolve(__dirname, ...args);
 
 module.exports = {
   entry: { main: './src/index.js' },
   output: {
-    filename: '[name].[chunkhash].js',
+    filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
   module: {
@@ -17,14 +16,12 @@ module.exports = {
       },
       {
         test: /\.module\.s(a|c)ss$/,
-        loader: [
+        use: [
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[name]__[local]___[hash:base64:5]',
-              camelCase: true,
               sourceMap: true,
             },
           },
@@ -39,7 +36,7 @@ module.exports = {
       {
         test: /\.s(a|c)ss$/,
         exclude: /\.module.(s(a|c)ss)$/,
-        loader: [
+        use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
           {
@@ -55,8 +52,8 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.wasm', '.scss'],
     alias: {
-      '~build': resolve('./build'),
-      '~utils': resolve('./src/utils/'),
+      '~package': path.resolve(__dirname, 'pkg/'),
+      '~utils': path.resolve(__dirname, 'src/utils/'),
     },
   },
   plugins: [
